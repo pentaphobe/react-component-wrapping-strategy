@@ -1,6 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+/**
+ * 
+ * Base style definitions
+ * 
+ */
 const LabelStyle = styled.label`
   padding: 5px;
   display: block;
@@ -16,30 +21,12 @@ const InputStyle = styled.input`
 const WrapperStyle = styled.div`
 `
 
-// const InputBase = (props = {}) => {
-//   const {
-//     children: label = '',
-//     type = 'text',
-//     placeholder = label || '',
-//     Label = LabelStyle,
-//     Input = InputStyle,
-//     Wrapper = WrapperStyle
-// 	} = props
 
-//   return (
-//     <Wrapper>
-//       <Label>
-//         <span>{label}</span>
-//         <Input
-//           type={type}
-//           placeholder={placeholder}
-//         />
-//       </Label>
-//     </Wrapper>
-//   )
-// }
-
-
+/**
+ * 
+ * Base "layout"
+ * 
+ */
 const DefaultBase = ({
     Wrapper=WrapperStyle, 
     Label=LabelStyle, 
@@ -61,19 +48,19 @@ const DefaultBase = ({
   </Wrapper>
 )
 
-const builder = (props = {}) => {
+const builder = (propsOuter = {}) => {
   const {
-    Label = LabelStyle,
-    Input = InputStyle,
-    Wrapper = WrapperStyle,
+    LabelOuter = LabelStyle,
+    InputOuter = InputStyle,
+    WrapperOuter = WrapperStyle,
     Base = DefaultBase,
-  } = props
+  } = propsOuter
 
   return (props = {}) => {
     const {
-      Label = Label,
-      Input = Input,
-      Wrapper = Wrapper,
+      Label = LabelOuter,
+      Input = InputOuter,
+      Wrapper = WrapperOuter,
       ...otherProps
     } = props
 
@@ -86,6 +73,27 @@ const builder = (props = {}) => {
     )
   }
 }
+
+/** LOOK AT ME TOMORROW */
+
+// const builder = (propsOuter = {}) => {
+//   return (props = {}) => {
+//     const {
+//       Label = Label || propsOuter.LabelStyle,
+//       Input = Input || propsOuter.InputStyle,
+//       Wrapper = Wrapper || propsOuter.WrapperStyle,
+//       ...propsOuter
+//     } = props
+
+//     return (
+//       <Base
+//         Label={Label}
+//         Input={Input}
+//         Wrapper={Wrapper}
+//         {...otherProps} />
+//     )
+//   }
+// }
 
 const InputBase = builder({
   Base: DefaultBase
