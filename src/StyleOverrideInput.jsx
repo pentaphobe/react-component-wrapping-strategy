@@ -3,11 +3,15 @@ import styled from 'styled-components'
 
 import Input from './Input'
 
-const NewInput = styled(Input)`
-  font-size: 1.5em;
-
+const NewInput = styled(Input)`  
   div {
+    font-size: 1.5em;
+    font-family: sans-serif;    
     background: #e80000;
+  }
+
+  label {
+    font-family: sans-serif;
   }
 
   input {

@@ -20,18 +20,14 @@ const NewInputStyle = styled(InputStyle)`
   border: none;
 `
 
-const NewLabelStyle = styled(LabelStyle)`
-`
-
 const NewInput = inputBuilder({
-  Label: NewLabelStyle,
-  Input: NewInputStyle,
-  Wrapper: NewWrapperStyle,
-  Base: (props = {}) => {
+  components: {
+    Input: NewInputStyle,
+    Wrapper: NewWrapperStyle,
+  },
+  Layout: (props = {}) => {
     const {
-      Wrapper = NewWrapperStyle,
-      Input = NewInputStyle,
-      Label = NewLabelStyle, 
+      components: {Wrapper, Label, Input},
       children:label = '',
       placeholder = label || '',
       type = 'text'

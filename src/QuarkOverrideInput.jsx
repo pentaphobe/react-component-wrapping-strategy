@@ -2,20 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 
 // Overriding some Quarks (same structure)
-import Input, { WrapperStyle, LabelStyle, InputStyle } from './Input'
+import OldInput, { WrapperStyle, LabelStyle, InputStyle } from './Input'
 
-const NewWrapperStyle = styled(WrapperStyle)`
+const Wrapper = styled(WrapperStyle)`
   display: block;
   background: #f8f8c0;
   padding: 10px;  
 `
 
-const NewLabelStyle = styled(LabelStyle)`
+const Label = styled(LabelStyle)`
   padding: 0;
   font-size: 1.2em;
 `
 
-const NewInputStyle = styled(InputStyle)`
+const Input = styled(InputStyle)`
   display: block;
   padding: 5px;
   font-size: 1.2em;
@@ -23,11 +23,10 @@ const NewInputStyle = styled(InputStyle)`
 `
 
 const NewInput = (props) => (
-  <Input    
-    Wrapper={NewWrapperStyle}
-    Label={NewLabelStyle}
-    Input={NewInputStyle}
-    {...props} />
+  <OldInput    
+    components={{Wrapper, Label, Input}}    
+    {...props} 
+    placeholder='Foo' />
 )
 
 export default NewInput

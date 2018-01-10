@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
+import genericBuilder from './genericBuilder'
+
 /**
  * 
  * Base style definitions
@@ -48,31 +50,47 @@ const DefaultBase = ({
   </Wrapper>
 )
 
-const builder = (propsOuter = {}) => {
-  const {
-    LabelOuter = LabelStyle,
-    InputOuter = InputStyle,
-    WrapperOuter = WrapperStyle,
-    Base = DefaultBase,
-  } = propsOuter
 
-  return (props = {}) => {
-    const {
-      Label = LabelOuter,
-      Input = InputOuter,
-      Wrapper = WrapperOuter,
-      ...otherProps
-    } = props
+// const builder = (propsOuter = {}) => {
+//   const {
+//     LabelOuter = LabelStyle,
+//     InputOuter = InputStyle,
+//     WrapperOuter = WrapperStyle,
+//     Base = DefaultBase,
+//   } = propsOuter
 
-    return (
-      <Base
-        Label={Label}
-        Input={Input}
-        Wrapper={Wrapper}
-        {...otherProps} />
-    )
-  }
+//   return (props = {}) => {
+//     const {
+//       Label = LabelOuter,
+//       Input = InputOuter,
+//       Wrapper = WrapperOuter,
+//       ...otherProps
+//     } = props
+
+//     return (
+//       <Base
+//         Label={Label}
+//         Input={Input}
+//         Wrapper={Wrapper}
+//         {...otherProps} />
+//     )
+//   }
+// }
+
+const builder = ({components, Layout}) => {
+  return genericBuilder({
+    components: {
+      ...{
+        Wrapper: WrapperStyle,
+        Label: LabelStyle,
+        Input: InputStyle
+      },
+      ...components,      
+    },
+    Layout: Layout || DefaultLayout,
+  })
 }
+
 
 /** LOOK AT ME TOMORROW */
 
@@ -96,7 +114,28 @@ const builder = (propsOuter = {}) => {
 // }
 
 const InputBase = builder({
-  Base: DefaultBase
+  Layout: (props) => {
+    const {
+      components: { Wrapper, Label, Input },
+      children: label,
+      type = '',
+      placeholder = '',
+      ...otherProps
+    } = props
+
+    return (
+      <Wrapper>
+        <Label>
+          <span>{label}</span>
+          <Input
+            type={type}
+            placeholder={placeholder}
+            {...otherProps}
+          />
+        </Label>
+      </Wrapper>
+    )
+  }
 })
 
 
@@ -105,5 +144,5 @@ export {
 
   LabelStyle, InputStyle, WrapperStyle,
 
-  builder,
+  builder as builder,
 }
