@@ -17,18 +17,37 @@ import StyleOverrideInput from './StyleOverrideInput'
 import QuarkOverrideInput from './QuarkOverrideInput'
 import FullOverrideInput from './FullOverrideInput'
 
-const Custom = builder({
+const CustomInputHolder = styled.span`
+  background: #eee;
+  padding: 5px;
+  border-radius: 3px;
+  display: table;
+
+  span[data-beer] {
+    font-size: 28px;
+    line-height: 48px;
+  }
+`
+
+const CustomLayoutInput = builder({
   Layout: (props = {}) => {
     const {
       components: {Wrapper, Label, Input},
       children: label,
+
+      className = '',
       ...otherProps
     } = props
 
     return (
-      <Wrapper>        
-        <Label>{label}</Label>
-        <Input {...otherProps} />
+      <Wrapper className={className}>        
+        <Label>
+          <span>{label}</span>
+          <CustomInputHolder>
+            <span data-beer>&#x1f37a;</span>
+            <Input {...otherProps} />            
+          </CustomInputHolder>
+        </Label>
       </Wrapper>
     )
   }
@@ -36,7 +55,6 @@ const Custom = builder({
 
 const Row = styled(RowBase)`
   padding: 10px;
-
 `
  
 const App = () => (
@@ -50,9 +68,9 @@ const App = () => (
     </Row>
     <Row xs={12}>
       <Col xs={12}>
-        <Custom placeholder='placeholder'>
-          Custom Input
-        </Custom>
+        <CustomLayoutInput placeholder='placeholder'>
+          Custom Input Layout
+        </CustomLayoutInput>
       </Col>
     </Row>         
     <Row xs={12}>

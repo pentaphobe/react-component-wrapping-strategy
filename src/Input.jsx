@@ -8,9 +8,14 @@ import genericBuilder from './genericBuilder'
  * Base style definitions
  * 
  */
+const WrapperStyle = styled.div`
+  font-family: sans-serif;
+`
+
 const LabelStyle = styled.label`
   padding: 5px;
   display: block;
+  font-size: 16px;
 
   span { 
     margin-right: 5px;
@@ -18,9 +23,10 @@ const LabelStyle = styled.label`
 `
 
 const InputStyle = styled.input`
-`
-
-const WrapperStyle = styled.div`
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #eee;
 `
 
 
@@ -42,6 +48,7 @@ const DefaultLayout = (props = {}) => {
     children: label,
     type = '',
     placeholder = '',
+
     ...otherProps
     } = props
 
@@ -79,6 +86,11 @@ const builder = ({components, Layout} = {}) => {
       },
       ...components,      
     },
+    // TODO: consider automagically inserting props
+    // quarkProps: {
+    //   Wrapper: ['className', 'thingy'],
+    //   Label: ['className']
+    // },
     Layout: Layout || DefaultLayout,
   })
 }
