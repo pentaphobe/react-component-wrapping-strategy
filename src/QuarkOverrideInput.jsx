@@ -10,6 +10,7 @@ const Wrapper = styled(WrapperStyle)`
   padding: 10px;  
 `
 
+// TODO: make this a wrapper of multiple elements to distinguish from StyledOverride
 const Label = styled(LabelStyle)`
   padding: 0;
   font-size: 1.2em;

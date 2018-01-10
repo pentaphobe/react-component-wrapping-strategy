@@ -20,32 +20,35 @@ const NewInputStyle = styled(InputStyle)`
   border: none;
 `
 
+const NewLayout = (props = {}) => {
+  const {
+    components: { Wrapper, Label, Input },
+    children: label = '',
+    placeholder = label || '',
+    type = 'text'
+  } = props
+
+  return (
+    <Wrapper>
+      <h3>Input using builder()</h3>
+      <Label>
+        <Input
+          placeholder={placeholder}
+          type={type}
+        />
+        <span>{label}</span>
+      </Label>
+    </Wrapper>
+  )
+}
+
 const NewInput = inputBuilder({
   components: {
     Input: NewInputStyle,
     Wrapper: NewWrapperStyle,
+    // Label is automatically included from the defaults
   },
-  Layout: (props = {}) => {
-    const {
-      components: {Wrapper, Label, Input},
-      children:label = '',
-      placeholder = label || '',
-      type = 'text'
-    } = props
-    
-    return (
-      <Wrapper>
-        <h3>Input using builder()</h3>        
-        <Label>
-          <Input
-            placeholder={placeholder}
-            type={type}
-          />
-          <span>{label}</span>
-        </Label>
-      </Wrapper>
-    )
-  }
+  Layout: NewLayout
 })
 
 export default NewInput
