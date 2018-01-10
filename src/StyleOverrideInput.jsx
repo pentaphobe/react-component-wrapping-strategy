@@ -4,17 +4,15 @@ import styled from 'styled-components'
 import Input from './Input'
 
 const NewInput = styled(Input)`  
-  div {
-    font-size: 1.5em;
-    font-family: sans-serif;    
-    background: #e80000;
-  }
-
+  background: #f0f;
+  
   label {
     font-family: sans-serif;
+    font-size: 1.5em;    
   }
 
   input {
+    font-family: sans-serif;        
     font-size: 2.5em;
   }
 `

@@ -26,7 +26,7 @@ const NewInput = (props) => (
   <OldInput    
     components={{Wrapper, Label, Input}}    
     {...props} 
-    placeholder='Foo' />
+  />
 )
 
 export default NewInput

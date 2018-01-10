@@ -29,26 +29,6 @@ const WrapperStyle = styled.div`
  * Base "layout"
  * 
  */
-const DefaultBase = ({
-    Wrapper=WrapperStyle, 
-    Label=LabelStyle, 
-    Input=InputStyle, 
-    children: label = '',
-    type = 'text',
-    placeholder = label || '',    
-    ...props} = {}
-  ) => (
-  <Wrapper>
-    <Label>
-      <span>{label}</span>
-      <Input
-        type={type}
-        placeholder={placeholder}
-        {...props}
-      />
-    </Label>
-  </Wrapper>
-)
 
 
 // const builder = (propsOuter = {}) => {
@@ -113,18 +93,20 @@ const builder = ({components, Layout}) => {
 //   }
 // }
 
-const InputBase = builder({
-  Layout: (props) => {
+const Input = builder({
+  Layout: (props = {}) => {
     const {
       components: { Wrapper, Label, Input },
       children: label,
       type = '',
       placeholder = '',
+      // needed to assure styled-components can extend
+      className = '',
       ...otherProps
     } = props
 
     return (
-      <Wrapper>
+      <Wrapper className={className}>
         <Label>
           <span>{label}</span>
           <Input
@@ -140,7 +122,7 @@ const InputBase = builder({
 
 
 export {
-  InputBase as default,
+  Input as default,
 
   LabelStyle, InputStyle, WrapperStyle,
 

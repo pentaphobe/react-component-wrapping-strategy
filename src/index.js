@@ -12,7 +12,7 @@ import { render } from 'react-dom'
 import styled from 'styled-components'
 import { Grid, Row as RowBase, Col } from 'react-styled-flexboxgrid'
 
-import Input, {builder} from './Input'
+import Input, {builder, LabelStyle} from './Input'
 import StyleOverrideInput from './StyleOverrideInput'
 import QuarkOverrideInput from './QuarkOverrideInput'
 import FullOverrideInput from './FullOverrideInput'
@@ -35,6 +35,17 @@ const Custom = builder({
 })
 
 
+const NewLabelStyle = styled.label`
+  color: #f0f;
+`
+
+const ReplaceQuark = (props) => (
+  <Input
+    {...props}
+    components={{Label:NewLabelStyle}}
+    />
+)
+
 const Row = styled(RowBase)`
   padding: 10px;
 
@@ -55,7 +66,14 @@ const App = () => (
           Custom Input
         </Custom>
       </Col>
-    </Row>    
+    </Row> 
+    <Row xs={12}>
+      <Col xs={12}>
+        <ReplaceQuark placeholder='placeholder'>
+          ReplaceQuark Input
+        </ReplaceQuark>
+      </Col>
+    </Row>        
     <Row xs={12}>
       <Col  xs={12}>    
         <StyleOverrideInput placeholder='placeholder'>

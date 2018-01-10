@@ -6,28 +6,22 @@ const DefaultLayout = () => (<div>Empty Layout</div>)
 const genericBuilder = (props = {}) => {
   const {
     Layout = DefaultLayout,
+    components: defaultComponents,
     ...propsOuter
   } = props
 
   return (props = {}) => {
-    const {
-      // components = { ...propsOuter.components, ...(components || {}) },      
-      components = {},
+    const {      
+      components,
       ...otherProps
     } = props
-
-    console.log({
-      components,
-      other: otherProps.components,
-      outer: propsOuter.components
-    })
-    console.log('consolidated components prop', components)
 
     return (
       <Layout
         {...propsOuter}
         {...otherProps}
-        {...components} />
+
+        components={{...defaultComponents, ...components}} />
     )
   }
 }
