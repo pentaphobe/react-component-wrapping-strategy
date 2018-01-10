@@ -12,83 +12,70 @@ import { render } from 'react-dom'
 import styled from 'styled-components'
 import { Grid, Row as RowBase, Col } from 'react-styled-flexboxgrid'
 
-import Input, {builder, LabelStyle} from './Input'
+import Input from './Input'
 import StyleOverrideInput from './StyleOverrideInput'
 import QuarkOverrideInput from './QuarkOverrideInput'
+import CustomLayoutInput from './CustomLayoutInput'
 import FullOverrideInput from './FullOverrideInput'
-
-const CustomInputHolder = styled.span`
-  background: #eee;
-  padding: 5px;
-  border-radius: 3px;
-  display: table;
-
-  span[data-beer] {
-    font-size: 28px;
-    line-height: 48px;
-  }
-`
-
-const CustomLayoutInput = builder({
-  Layout: (props = {}) => {
-    const {
-      components: {Wrapper, Label, Input},
-      children: label,
-
-      className = '',
-      ...otherProps
-    } = props
-
-    return (
-      <Wrapper className={className}>        
-        <Label>
-          <span>{label}</span>
-          <CustomInputHolder>
-            <span data-beer>&#x1f37a;</span>
-            <Input {...otherProps} />            
-          </CustomInputHolder>
-        </Label>
-      </Wrapper>
-    )
-  }
-})
 
 const Row = styled(RowBase)`
   padding: 10px;
 `
- 
+
 const App = () => (
   <Grid>
-    <Row xs={12}>
-      <Col  xs={12}>
+    <Row>
+      <Col xs={4}>
+        <h3>Input</h3>
+        The default component
+      </Col>
+      <Col xs={8}>
         <Input placeholder='placeholder'>
           Basic Input
         </Input>
       </Col>
-    </Row>
-    <Row xs={12}>
-      <Col xs={12}>
-        <CustomLayoutInput placeholder='placeholder'>
-          Custom Input Layout
-        </CustomLayoutInput>
+    </Row>       
+    <Row>
+      <Col xs={4}>
+        <h3>StyleOverrideInput</h3>
+        Naïve override of styles using <code>styled(Input)`...`</code>
       </Col>
-    </Row>         
-    <Row xs={12}>
-      <Col  xs={12}>    
+      <Col xs={8}>    
         <StyleOverrideInput placeholder='placeholder'>
           Input with style override
         </StyleOverrideInput>     
       </Col>
     </Row> 
-    <Row xs={12}>
-      <Col  xs={12}>        
+    <Row>
+      <Col xs={4}>
+        <h3>QuarkOverrideInput</h3>
+        <p>Replacing individual quarks, but retaining original structure.</p>
+        <p>Simplest method to wrap, override, or replace quarks</p>
+      </Col>    
+      <Col xs={8}>        
         <QuarkOverrideInput placeholder='placeholder'>
           Input with quark override
         </QuarkOverrideInput>  
       </Col>
-    </Row>         
-    <Row xs={12}>
-      <Col  xs={12}>
+    </Row>  
+    <Row>
+      <Col xs={4}>
+        <h3>CustomLayoutInput</h3>
+        Overriding layout to inject an extra component (no change to existing quarks)
+      </Col>
+      <Col xs={8}>
+        <CustomLayoutInput placeholder='placeholder'>
+          Custom Input Layout
+        </CustomLayoutInput>
+      </Col>
+    </Row>             
+    <Row>
+      <Col xs={4}>
+        <p>The heaviest override method, uses the builder to potentially override layout, quarks, 
+        and other logic</p>
+      </Col>
+      <Col xs={8}>
+        <h3>FullOverrideInput</h3>
         <FullOverrideInput placeholder='placeholder'>
           Input with full override (structural changes)
         </FullOverrideInput>        
