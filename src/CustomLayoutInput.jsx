@@ -1,3 +1,9 @@
+/**
+ * 
+ * Using existing quarks and altering/amending layout
+ * 
+ */
+
 import React from 'react'
 import styled from 'styled-components'
 

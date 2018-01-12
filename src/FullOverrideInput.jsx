@@ -1,3 +1,9 @@
+/**
+ * 
+ * Overriding quarks _and_ layout
+ * 
+ */
+
 import React from 'react'
 import styled from 'styled-components'
 

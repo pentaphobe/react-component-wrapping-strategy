@@ -1,3 +1,9 @@
+/**
+ * 
+ * Basic overriding only using `styled()`
+ * 
+ */
+
 import React from 'react'
 import styled from 'styled-components'
 
