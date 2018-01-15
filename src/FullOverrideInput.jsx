@@ -29,7 +29,6 @@ const NewInputStyle = styled(InputStyle)`
 const NewLayout = (props = {}) => {
   const {
     components: { Wrapper, Label, Input },
-    className = '',
     
     children: label = '',
     placeholder = label || '',
@@ -37,7 +36,7 @@ const NewLayout = (props = {}) => {
   } = props
 
   return (
-    <Wrapper className={className}>
+    <Wrapper>
       <h3>Input using builder()</h3>
       <Label>
         <Input

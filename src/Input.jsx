@@ -1,7 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import genericBuilder from './genericBuilder'
+import genericBuilder from './extendedBuilder'
+
+import pkg from '../package.json'
 
 /**
  * 
@@ -53,13 +55,12 @@ const DefaultLayout = (props = {}) => {
     } = props
 
   return (
-    <Wrapper className={className}>
+    <Wrapper>
       <Label>
         <span>{label}</span>
         <Input
           type={type}
-          placeholder={placeholder}
-          {...otherProps}
+          placeholder={placeholder}          
         />
       </Label>
     </Wrapper>
@@ -77,6 +78,7 @@ const DefaultLayout = (props = {}) => {
  * 
  */
 const builder = ({components, Layout} = {}) => {
+  
   return genericBuilder({
     components: {
       ...{
@@ -87,10 +89,10 @@ const builder = ({components, Layout} = {}) => {
       ...components,      
     },
     // TODO: consider automagically inserting props
-    // quarkProps: {
-    //   Wrapper: ['className', 'thingy'],
-    //   Label: ['className']
-    // },
+    quarkProps: {
+      Wrapper: ['className', 'data-thingy'],
+      // Label: ['className', 'data-thingy']
+    },
     Layout: Layout || DefaultLayout,
   })
 }

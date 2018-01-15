@@ -27,12 +27,11 @@ const CustomLayoutInput = builder({
       components: { Wrapper, Label, Input },
       children: label,
 
-      className = '',
       ...otherProps
     } = props
 
     return (
-      <Wrapper className={className}>
+      <Wrapper>
         <Label>
           <span>{label}</span>
           <CustomInputHolder>

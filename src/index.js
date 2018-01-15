@@ -30,7 +30,7 @@ const App = () => (
         The default component
       </Col>
       <Col xs={8}>
-        <Input placeholder='placeholder'>
+        <Input placeholder='placeholder' data-thingy="hi" >
           Basic Input
         </Input>
       </Col>
