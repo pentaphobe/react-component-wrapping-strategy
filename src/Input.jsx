@@ -78,7 +78,8 @@ const DefaultLayout = (props = {}) => {
  * 
  */
 const builder = ({components, Layout} = {}) => {
-  
+  console.log(`Input ${pkg.version} overridden`)
+
   return genericBuilder({
     components: {
       ...{
