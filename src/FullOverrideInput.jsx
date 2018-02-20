@@ -43,7 +43,7 @@ const NewLayout = (props = {}) => {
           placeholder={placeholder}
           type={type}
         />
-        <span>{label}</span>
+        <p>{label}</p>
       </Label>
     </Wrapper>
   )

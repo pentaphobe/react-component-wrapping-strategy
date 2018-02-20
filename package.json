@@ -1,13 +1,15 @@
 {
   "name": "react-component-wrapping-strategy",
-  "description": "Exploring an alternative way of wrapping react components\n\n",
+  "description":
+    "Exploring an alternative way of wrapping react components\n\n",
   "version": "0.0.104",
   "dependencies": {
-    "styled-components": "2.4.0",
-    "react-styled-flexboxgrid": "2.1.1",
-    "react-dom": "16.0.0",
+    "prop-types": "15.6.0",
     "react": "16.0.0",
-    "prop-types": "15.6.0"
+    "react-dom": "16.0.0",
+    "react-styled-flexboxgrid": "2.1.1",
+    "recompose": "0.26.0",
+    "styled-components": "2.4.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"

@@ -19,7 +19,8 @@ import CustomLayoutInput from './CustomLayoutInput'
 import FullOverrideInput from './FullOverrideInput'
 
 const Row = styled(RowBase)`
-  padding: 10px;
+  padding: 20px 10px;
+  border-bottom: 1px solid #eee;
 `
 
 const App = () => (
@@ -71,11 +72,12 @@ const App = () => (
     </Row>             
     <Row>
       <Col xs={4}>
+        <h3>FullOverrideInput</h3>
         <p>The heaviest override method, uses the builder to potentially override layout, quarks, 
         and other logic</p>
       </Col>
       <Col xs={8}>
-        <h3>FullOverrideInput</h3>
+        
         <FullOverrideInput placeholder='placeholder'>
           Input with full override (structural changes)
         </FullOverrideInput>        

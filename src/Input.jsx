@@ -52,7 +52,7 @@ const DefaultLayout = (props = {}) => {
     placeholder = '',
 
     ...otherProps
-    } = props
+  } = props
 
   return (
     <Wrapper>
@@ -89,7 +89,6 @@ const builder = ({components, Layout} = {}) => {
       },
       ...components,      
     },
-    // TODO: consider automagically inserting props
     quarkProps: {
       Wrapper: ['className', 'data-thingy'],
       // Label: ['className', 'data-thingy']

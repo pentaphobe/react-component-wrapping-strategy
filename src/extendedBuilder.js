@@ -1,25 +1,19 @@
 import React from 'react'
-import {compose, withProps} from 'recompose'
 
-const DefaultLayout = () => (<div>Empty Layout</div>)
+const DefaultLayout = () => <div>Empty Layout</div>
 
 // each entry is a list of props to assign from parent to quark
 const defaultQuarkProps = {
   Layout: ['className']
 }
 
-// filter object entries by a function 
+// filter object entries by a function
 const filterEntries = fn => obj =>
-  Object.entries(obj).reduce(
-    (newObj, [key, val]) => {
+  Object.entries(obj).reduce((newObj, [key, val]) => {
+    if (fn(key, val, obj)) newObj[key] = obj[key]
 
-      if (fn(key, val, obj))
-        newObj[key] = obj[key]
-
-      return newObj
-    },
-    {}
-  )
+    return newObj
+  }, {})
 
 const gatherProps = props => (propList = []) => {
   const gatherFn = filterEntries((k, val, obj) => propList.indexOf(k) !== -1)
@@ -36,10 +30,7 @@ const extendedBuilder = (props = {}) => {
   } = props
 
   return (props = {}) => {
-    const {
-      components,
-      ...otherProps
-    } = props
+    const { components, ...otherProps } = props
 
     const allComponents = {
       ...defaultComponents,
@@ -48,26 +39,16 @@ const extendedBuilder = (props = {}) => {
 
     // make a function which gathers props from a collection
     // of all props
-    const gather = gatherProps({...propsOuter, ...otherProps})
+    const gather = gatherProps({ ...propsOuter, ...otherProps })
 
-    Object.entries(allComponents).map( ([k,v]) => {
+    Object.entries(allComponents).map(([k, V]) => {
       // just the props requested for this quark
       const filteredProps = gather(quarkProps[k])
 
-      const enhance = compose(
-        withProps(filteredProps)
-      )
-
-      allComponents[k] = enhance(v)
+      allComponents[k] = <V {...filteredProps} />
     })
 
-    return (
-      <Layout
-        {...propsOuter}
-        {...otherProps}
-
-        components={allComponents} />
-    )
+    return <Layout {...propsOuter} {...otherProps} components={allComponents} />
   }
 }
 
@@ -75,24 +56,22 @@ const extendedBuilder = (props = {}) => {
  * Example usage
  */
 const builder = ({ components, Layout, quarkProps } = {}) => {
-  return genericBuilder({
+  return extendedBuilder({
     components: {
       ...{
         Wrapper: WrapperStyle,
         Label: LabelStyle,
         Input: InputStyle
       },
-      ...components,
+      ...components
     },
     // TODO: consider automagically inserting props
-    quarkProps: {      
+    quarkProps: {
       Wrapper: ['className'],
       Label: ['className']
     },
-    Layout: Layout || DefaultLayout,    
+    Layout: Layout || DefaultLayout
   })
 }
 
-export {
-  extendedBuilder as default
-}
+export { extendedBuilder as default }
